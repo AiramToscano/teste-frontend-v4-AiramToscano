@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { type PropType, ref } from 'vue'
+  import { type PropType, ref, watch } from 'vue'
   import { LMap, LTileLayer, LMarker, LPopup } from '@vue-leaflet/vue-leaflet'
   import L from 'leaflet'
   import type { Equipment } from '../interface/Imap'
@@ -50,6 +50,10 @@
     if (item.model.name == 'Harvester') return harvesterIcon
     if (item.model.name == 'Garra traçadora') return clawIcon
   }
+
+  watch(props, () => {
+    equipments.value = props.maps
+  })
 </script>
 
 <template>

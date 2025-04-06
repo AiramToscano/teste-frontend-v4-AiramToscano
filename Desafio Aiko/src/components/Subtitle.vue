@@ -2,7 +2,16 @@
 
 <template>
   <section
-    style="display: flex; align-items: start; justify-content: start"
+    style="
+      display: flex;
+      align-items: start;
+      justify-content: start;
+      margin-top: 12px;
+      width: 280px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    "
     class="flex"
   >
     <section style="display: flex; align-items: center">

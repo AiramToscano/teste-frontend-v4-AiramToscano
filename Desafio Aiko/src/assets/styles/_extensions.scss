@@ -79,9 +79,8 @@
 }
 
 .container-filters {
+  margin-bottom: 12px;
   display: flex;
-  margin-top: 50px;
-  margin-bottom: 20px;
 }
 
 .multiselect {
@@ -107,4 +106,20 @@
   transform: translateY(-50%);
   color: #999;
   pointer-events: none;
+}
+
+.l-map {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2e3d26; /* Verde escuro, tom florestal */
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+  letter-spacing: 1px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 1rem;
 }

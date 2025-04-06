@@ -56,7 +56,12 @@ export interface State {
   equipmentStateId: string
 }
 
-export interface MultiSelect {
-  id: string
+export interface MultiSelectState {
+  equipmentStateId: string
+  name: string
+}
+
+export interface MultiSelectModel {
+  equipmentModelId: string
   name: string
 }
