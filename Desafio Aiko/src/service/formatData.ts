@@ -1,4 +1,5 @@
 import dataPositionHistory from '../../../data/equipmentPositionHistory.json'
+import dataModel from '../../../data/equipmentModel.json'
 import dataEquipment from '../../../data/equipment.json'
 import dataEquipmentState from '../../../data/equipmentState.json'
 import dataEquipmentStateHistory from '../../../data/equipmentStateHistory.json'
@@ -7,6 +8,7 @@ export const formatData = () => {
   const NewData = dataEquipment.map((equipment) => {
     return {
       ...equipment,
+      model: dataModel.filter((e) => e.id === equipment.equipmentModelId)[0],
       lastState: dataEquipmentStateHistory
         .filter((stateHistory) => stateHistory.equipmentId === equipment.id)[0]
         .states.slice()

@@ -3,8 +3,9 @@ import App from './App.vue'
 import 'leaflet/dist/leaflet.css'
 import PrimeVue from 'primevue/config'
 import '@/assets/styles/theme.scss'
-
+import MultiSelect from 'primevue/multiselect'
 import Dialog from 'primevue/dialog'
+import Aura from '@primeuix/themes/aura'
 
 import L from 'leaflet'
 
@@ -23,7 +24,16 @@ L.Icon.Default.mergeOptions({
 
 const app = createApp(App)
 
-app.use(PrimeVue)
+app.use(PrimeVue, {
+  theme: {
+    preset: Aura,
+    options: {
+      prefix: 'p',
+      darkModeSelector: 'system',
+      cssLayer: false,
+    },
+  },
+})
 app.component('Dialog', Dialog)
-
+app.component('MultiSelect', MultiSelect)
 app.mount('#app')

@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { ref, onMounted } from 'vue'
   import Map from '../components/Map.vue'
+
   // import dataEquipment from '../../../data/equipment.json'
   // import dataEquipmentModel from '../../../data/equipmentModel.json'
   // import dataEquipmentState from '../../../data/equipmentState.json'
@@ -8,6 +9,7 @@
   import { formatData } from '../service/formatData'
   import type {
     Equipment,
+    MultiSelect,
     // Equipment,
     // EquipamentModel,
     // EquipmentState,
@@ -15,6 +17,7 @@
   } from '../interface/Imap'
 
   const equipment = ref<Equipment[]>(formatData())
+  const dataState = ref<MultiSelect[]>([])
   // const equipment = ref<Equipment[]>(dataEquipment)
   // const equipmentModel = ref<EquipamentModel[]>(dataEquipmentModel)
   // const equipmentState = ref<EquipmentState[]>(dataEquipmentState)
@@ -27,5 +30,13 @@
 </script>
 
 <template>
+  <MultiSelect
+    v-model="dataState"
+    :options="[]"
+    optionLabel="name"
+    filter
+    placeholder="Select Cities"
+    :maxSelectedLabels="3"
+  />
   <Map :maps="equipment" :positionCenter="equipment[0]" />
 </template>

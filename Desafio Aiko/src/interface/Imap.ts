@@ -3,6 +3,7 @@ export interface Equipment {
   equipmentModelId: string
   name: string
   lastPosition: Position
+  model: EquipamentModel
   lastState: State
   states: States[]
   positions: {
@@ -15,7 +16,6 @@ export interface EquipamentModel {
   id: string
   name: string
   hourlyEarnings: hourlyEarnings[]
-  equipament: Equipment[]
 }
 
 export interface Position {
@@ -54,4 +54,9 @@ export interface States {
 export interface State {
   date: string
   equipmentStateId: string
+}
+
+export interface MultiSelect {
+  id: string
+  name: string
 }

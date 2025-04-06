@@ -4,7 +4,6 @@
   import L from 'leaflet'
   import type { Equipment } from '../interface/Imap'
   import Subtitle from '../components/Subtitle.vue'
-  import dataEquipmentState from '../../../data/equipmentState.json'
 
   const props = defineProps({
     maps: {
@@ -20,27 +19,27 @@
   const defaultEquipment = ref<Equipment>(props.positionCenter)
   const equipments = ref<Equipment[]>(props.maps)
 
-  const greenIcon = L.icon({
-    iconUrl: '/equipmentGreen.png',
-    iconSize: [50, 65],
+  const busIcon = L.icon({
+    iconUrl: '/caminhao.png',
+    iconSize: [30, 45],
     shadowSize: [50, 64],
     iconAnchor: [22, 94],
     shadowAnchor: [4, 62],
     popupAnchor: [-3, -76],
   })
 
-  const redIcon = L.icon({
-    iconUrl: 'red.png',
-    iconSize: [50, 65],
+  const clawIcon = L.icon({
+    iconUrl: 'equipament.png',
+    iconSize: [40, 55],
     shadowSize: [50, 64],
     iconAnchor: [22, 94],
     shadowAnchor: [4, 62],
     popupAnchor: [-3, -76],
   })
 
-  const yellowIcon = L.icon({
-    iconUrl: '/equipmentYellow.png',
-    iconSize: [50, 65],
+  const harvesterIcon = L.icon({
+    iconUrl: 'Harvester.png',
+    iconSize: [30, 45],
     shadowSize: [50, 64],
     iconAnchor: [22, 94],
     shadowAnchor: [4, 62],
@@ -48,12 +47,9 @@
   })
 
   const verifyColor = (item: Equipment) => {
-    let verify = dataEquipmentState.find(
-      (s) => s.id === item.lastState.equipmentStateId,
-    )
-    if (verify && verify.name == 'Operando') return greenIcon
-    if (verify && verify.name == 'Parado') return yellowIcon
-    if (verify && verify.name == 'Manutenção') return redIcon
+    if (item.model.name == 'Caminhão de carga') return busIcon
+    if (item.model.name == 'Harvester') return harvesterIcon
+    if (item.model.name == 'Garra traçadora') return clawIcon
   }
 </script>
 
@@ -69,7 +65,7 @@
   >
     <l-map
       style="height: 600px; width: 60%"
-      :zoom="10"
+      :zoom="10.5"
       :center="[
         defaultEquipment.lastPosition.lat,
         defaultEquipment.lastPosition.lon,
@@ -88,7 +84,10 @@
           <l-popup>
             <div class="popup-modal">
               <h3>{{ item.name }}</h3>
-              <p class="text-color">Status: {{ item.states[0].state.name }}</p>
+              <section style="display: flex">
+                <p>Status:</p>
+                <p class="span-title-state">{{ item.states[0].state.name }}</p>
+              </section>
               <span>Histórico de Estados: </span>
               <section class="container-historic-state">
                 <section
