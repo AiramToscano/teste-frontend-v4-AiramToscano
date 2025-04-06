@@ -75,7 +75,7 @@
           :options="dataStateOption"
           optionLabel="name"
           class="multiselect"
-          placeholder="Selecione os estados"
+          placeholder="Filtre os equipamentos pelo estado atual"
           :maxSelectedLabels="2"
         />
       </section>
@@ -85,7 +85,7 @@
           :options="dataModelOption"
           optionLabel="name"
           class="multiselect"
-          placeholder="Selecione os modelos"
+          placeholder="Filtre os equipamentos pelo modelo"
           :maxSelectedLabels="2"
         />
       </section>
@@ -94,7 +94,7 @@
           type="text"
           placeholder="Pesquisar..."
           v-model="valueSearch"
-          class="search-input"
+          class="search-input multiselect"
           @update:model-value="(newValue: string) => (valueSearch = newValue)"
         />
         <i class="pi pi-search search-icon"></i>
