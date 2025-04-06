@@ -19,8 +19,6 @@
 
   const defaultEquipment = ref<Equipment>(props.positionCenter)
   const equipments = ref<Equipment[]>(props.maps)
-  const visibleHistoric = ref<boolean>(false)
-  const emit = defineEmits(['click:visibleModal'])
 
   const greenIcon = L.icon({
     iconUrl: '/equipmentGreen.png',
@@ -57,10 +55,6 @@
     if (verify && verify.name == 'Parado') return yellowIcon
     if (verify && verify.name == 'Manutenção') return redIcon
   }
-
-  const clickModal = () => {
-    visibleHistoric.value = !visibleHistoric.value
-  }
 </script>
 
 <template>
@@ -90,14 +84,13 @@
         <l-marker
           :lat-lng="[item.lastPosition.lat, item.lastPosition.lon]"
           :icon="verifyColor(item)"
-          @click="console.log('abriu')"
         >
           <l-popup>
             <div class="popup-modal">
               <h3>{{ item.name }}</h3>
               <p class="text-color">Status: {{ item.states[0].state.name }}</p>
-              <button @click="clickModal()">Exibir Histórico</button>
-              <section v-if="visibleHistoric" class="container-historic-state">
+              <span>Histórico de Estados: </span>
+              <section class="container-historic-state">
                 <section
                   v-for="(itemState, index) in item.states"
                   :key="index"

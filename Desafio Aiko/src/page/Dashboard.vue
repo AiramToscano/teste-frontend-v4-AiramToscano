@@ -15,7 +15,6 @@
   } from '../interface/Imap'
 
   const equipment = ref<Equipment[]>(formatData())
-  const visibleModal = ref<boolean>(false)
   // const equipment = ref<Equipment[]>(dataEquipment)
   // const equipmentModel = ref<EquipamentModel[]>(dataEquipmentModel)
   // const equipmentState = ref<EquipmentState[]>(dataEquipmentState)
@@ -25,16 +24,8 @@
   onMounted(() => {
     console.log(formatData())
   })
-  const clickVisibleModal = (state: boolean, item: Equipment) => {
-    console.log(state)
-    visibleModal.value = state
-  }
 </script>
 
 <template>
-  <Map
-    @click:visibleModal="clickVisibleModal"
-    :maps="equipment"
-    :positionCenter="equipment[0]"
-  />
+  <Map :maps="equipment" :positionCenter="equipment[0]" />
 </template>
