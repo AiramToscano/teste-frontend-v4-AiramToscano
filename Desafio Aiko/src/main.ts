@@ -5,6 +5,7 @@ import PrimeVue from 'primevue/config'
 import '@/assets/styles/theme.scss'
 import MultiSelect from 'primevue/multiselect'
 import Dialog from 'primevue/dialog'
+import InputText from 'primevue/inputtext'
 import Aura from '@primeuix/themes/aura'
 
 import L from 'leaflet'
@@ -36,4 +37,5 @@ app.use(PrimeVue, {
 })
 app.component('Dialog', Dialog)
 app.component('MultiSelect', MultiSelect)
+app.component('InputText', InputText)
 app.mount('#app')

@@ -2,10 +2,10 @@
 
 <template>
   <section
-    style="display: flex; align-items: center; justify-content: center"
+    style="display: flex; align-items: start; justify-content: start"
     class="flex"
   >
-    <section style="display: flex; width: 60%; align-items: center">
+    <section style="display: flex; align-items: center">
       <section style="display: flex; align-items: center">
         <i
           :style="{

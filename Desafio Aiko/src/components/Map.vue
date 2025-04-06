@@ -3,7 +3,6 @@
   import { LMap, LTileLayer, LMarker, LPopup } from '@vue-leaflet/vue-leaflet'
   import L from 'leaflet'
   import type { Equipment } from '../interface/Imap'
-  import Subtitle from '../components/Subtitle.vue'
 
   const props = defineProps({
     maps: {
@@ -54,64 +53,53 @@
 </script>
 
 <template>
-  <section
-    style="
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 100px;
-    "
-    class="flex"
+  <l-map
+    style="height: 600px; width: 100%"
+    :zoom="10.5"
+    :center="[
+      defaultEquipment.lastPosition.lat,
+      defaultEquipment.lastPosition.lon,
+    ]"
   >
-    <l-map
-      style="height: 600px; width: 60%"
-      :zoom="10.5"
-      :center="[
-        defaultEquipment.lastPosition.lat,
-        defaultEquipment.lastPosition.lon,
-      ]"
-    >
-      <l-tile-layer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution="&copy; OpenStreetMap contributors"
-      />
-      <section v-for="item in equipments" :key="item.id">
-        >
-        <l-marker
-          :lat-lng="[item.lastPosition.lat, item.lastPosition.lon]"
-          :icon="verifyColor(item)"
-        >
-          <l-popup>
-            <div class="popup-modal">
-              <h3>{{ item.name }}</h3>
-              <section style="display: flex">
-                <p>Status:</p>
-                <p class="span-title-state">{{ item.states[0].state.name }}</p>
-              </section>
-              <span>Histórico de Estados: </span>
-              <section class="container-historic-state">
-                <section
-                  v-for="(itemState, index) in item.states"
-                  :key="index"
-                  :style="{
-                    borderLeft: '4px solid ' + itemState.state.color,
-                  }"
-                  class="state-card"
+    <l-tile-layer
+      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      attribution="&copy; OpenStreetMap contributors"
+    />
+    <section v-for="item in equipments" :key="item.id">
+      >
+      <l-marker
+        :lat-lng="[item.lastPosition.lat, item.lastPosition.lon]"
+        :icon="verifyColor(item)"
+      >
+        <l-popup>
+          <div class="popup-modal">
+            <h3>{{ item.name }}</h3>
+            <section style="display: flex">
+              <p>Status:</p>
+              <p class="span-title-state">{{ item.states[0].state.name }}</p>
+            </section>
+            <span>Histórico de Estados: </span>
+            <section class="container-historic-state">
+              <section
+                v-for="(itemState, index) in item.states"
+                :key="index"
+                :style="{
+                  borderLeft: '4px solid ' + itemState.state.color,
+                }"
+                class="state-card"
+              >
+                <span class="state-id"
+                  >Data:
+                  {{
+                    new Date(itemState.date).toLocaleDateString('pt-BR')
+                  }}</span
                 >
-                  <span class="state-id"
-                    >Data:
-                    {{
-                      new Date(itemState.date).toLocaleDateString('pt-BR')
-                    }}</span
-                  >
-                  <span class="state-name">{{ itemState.state.name }}</span>
-                </section>
+                <span class="state-name">{{ itemState.state.name }}</span>
               </section>
-            </div>
-          </l-popup>
-        </l-marker>
-      </section>
-    </l-map>
-  </section>
-  <Subtitle />
+            </section>
+          </div>
+        </l-popup>
+      </l-marker>
+    </section>
+  </l-map>
 </template>
