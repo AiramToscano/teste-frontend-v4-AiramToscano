@@ -59,7 +59,7 @@
 <template>
   <l-map
     style="height: 600px; width: 100%"
-    :zoom="10.5"
+    :zoom="9.5"
     :center="[
       defaultEquipment.lastPosition.lat,
       defaultEquipment.lastPosition.lon,
