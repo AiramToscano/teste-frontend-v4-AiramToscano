@@ -95,7 +95,9 @@
           placeholder="Pesquisar..."
           v-model="valueSearch"
           class="search-input multiselect"
-          @update:model-value="(newValue: string) => (valueSearch = newValue)"
+          @update:model-value="
+            (newValue: string | undefined) => (valueSearch = newValue ?? '')
+          "
         />
         <i class="pi pi-search search-icon"></i>
       </section>
